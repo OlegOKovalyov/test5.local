@@ -177,3 +177,73 @@ function sliceptc_custom_logo_output( $html ) {
     return $html;
 }
 add_filter('get_custom_logo', 'sliceptc_custom_logo_output', 10);
+
+
+/**
+ * Adds the individual sections, settings, and controls to the theme customizer
+ */
+function sliceptc_customizer( $wp_customize ) {
+    $wp_customize->add_section(
+        'sliceptc_section_one',
+        array(
+            'title' => 'Header Social Icons',
+            'description' => 'Links to social networks.',
+            'priority' => 35,
+        )
+    );
+    $wp_customize->add_setting(
+        'VKontakte URL',
+        array(
+            'default' => 'https://vk.com/',
+        )
+    );
+    $wp_customize->add_control(
+        'VKontakte URL',
+        array(
+            'label' => 'VKontakte URL',
+            'section' => 'sliceptc_section_one',
+            'type' => 'url',
+        )
+    );
+
+    $wp_customize->add_setting(
+        'Instagram URL',
+        array(
+            'default' => 'https://www.instagram.com/',
+        )
+    );
+
+    $wp_customize->add_control(
+        'Instagram URL',
+        array(
+            'label' => 'Instagram URL',
+            'section' => 'sliceptc_section_one',
+            'type' => 'url',
+        )
+    );
+
+
+    $wp_customize->add_section(
+        'sliceptc_section_two',
+        array(
+            'title' => 'Contact Phone',
+            'description' => 'Company Contact Phone Number',
+            'priority' => 35,
+        )
+    );
+    $wp_customize->add_setting(
+        'Phone Number',
+        array(
+            'default' => '8-916-786-81-05',
+        )
+    );
+    $wp_customize->add_control(
+        'Phone Number',
+        array(
+            'label' => 'Company Phone',
+            'section' => 'sliceptc_section_two',
+            'type' => 'text',
+        )
+    );
+}
+add_action( 'customize_register', 'sliceptc_customizer' );

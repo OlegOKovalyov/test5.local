@@ -14,12 +14,17 @@
 	        </div><!-- #content -->
 
             <!-- footer -->
-            <footer id="footer">
+            <?php
+            $bg_footer = get_field('background_footer');
+             ?>
+            <?php $bg_footer_css =  ( !empty($bg_footer) ) ? ' style="background-image: url(' . $bg_footer . ');"' : '' ?>
+            <footer id="footer"<?php echo $bg_footer_css; ?>>
                 <section class="sec-cont">
                     <div class="contacts">
                         <h2>контакты</h2>
                         <div class="contact-item contact-phone">
-                            <a href="tel:89167868105"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/ico2.png?ver1.0" alt=""/></i><span>8-916-786-81-05</span></a>
+<!--                            <a href="tel:89167868105"><i><img src="--><?php //echo get_bloginfo('template_url'); ?><!--/assets/img/ico2.png?ver1.0" alt=""/></i><span>8-916-786-81-05</span></a>-->
+                            <a href="tel:<?php echo get_theme_mod( 'Phone Number', '8-916-786-81-05' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/ico2.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Phone Number', '8-916-786-81-05' ); ?></span></a>
                         </div>
                         <div class="contact-item contact-links">
                             <div class="contact-link"><a href="mailto:info@web-impression.ru"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc3.png?ver1.0" alt=""/></i><span>info@web-impression.ru</span></a></div>
