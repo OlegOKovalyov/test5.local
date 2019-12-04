@@ -121,16 +121,26 @@ add_action( 'widgets_init', 'sliceptc_widgets_init' );
  */
 function sliceptc_scripts() {
 	wp_enqueue_style( 'sliceptc-style', get_stylesheet_uri() );
+    wp_enqueue_style('sliceptc-styles', get_template_directory_uri() . '/assets/css/styles.css', array(), '1.0');
+    wp_enqueue_style('sliceptc-desktop-css', get_template_directory_uri() . '/assets/css/desktop.css', array(), '1.0', 'screen and (min-width:1024px)');
 
-	wp_enqueue_script( 'sliceptc-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
-	wp_enqueue_script( 'sliceptc-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+    wp_enqueue_script('jquery');
+    wp_enqueue_script( 'sliceptc-scripts', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), '20151215', true );
+    wp_enqueue_script( 'sliceptc-desktop-script', get_template_directory_uri() . '/assets/js/desktop.js', array('jquery'), '1.0', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'sliceptc_scripts' );
+
+/**
+ * Enqueue font styles in footer.
+ */
+function sliceptc_add_footer_styles() {
+    wp_enqueue_style('sliceptc-fonts', '//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext', array(), '1.0');
+};
+add_action( 'get_footer', 'sliceptc_add_footer_styles' );
 
 /**
  * Implement the Custom Header feature.
@@ -159,3 +169,11 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Changes the class on the custom logo in the header.php
+ */
+function sliceptc_custom_logo_output( $html ) {
+    $html = str_replace('custom-logo-link', 'custom-logo-link logo', $html );
+    return $html;
+}
+add_filter('get_custom_logo', 'sliceptc_custom_logo_output', 10);
