@@ -22,14 +22,14 @@
                 <section class="sec-cont">
                     <div class="contacts">
                         <h2>контакты</h2>
-                        <div class="contact-item contact-phone">
+                        <div id="foot-phone" class="contact-item contact-phone">
                             <a href="tel:<?php echo sliceptc_clear_phone_number(); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/ico2.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Phone Number', '8-916-786-81-05' ); ?></span></a>
                         </div>
                         <div class="contact-item contact-links">
-                            <div class="contact-link"><a href="mailto:<?php echo get_theme_mod( 'Email', 'info@web-impression.ru' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc3.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Email', 'info@web-impression.ru' ); ?></span></a></div>
-                            <div class="contact-link"><a href="<?php echo 'https://www.skype.com/ru/' . get_theme_mod( 'Skype', 'web-impression' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc4.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Skype', 'web-impression' ); ?></span></a></div>
-                            <div class="contact-link"><a href="<?php echo get_theme_mod( 'VKontakte', 'https://vk.com/web__impression' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc5.png?ver1.0" alt=""/></i><span><?php echo 'vk.com' . parse_url(get_theme_mod( 'VKontakte', 'https://vk.com/web__impression' ), PHP_URL_PATH); ?></span></a></div>
-                            <div class="contact-link"><a href="<?php echo 'https://www.instagram.com/' . get_theme_mod( 'Instagram', 'web__impression' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc6.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Instagram', 'web__impression' ); ?></span></a></div>
+                            <div id="foot-email" class="contact-link"><a href="mailto:<?php echo get_theme_mod( 'Email', 'info@web-impression.ru' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc3.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Email', 'info@web-impression.ru' ); ?></span></a></div>
+                            <div id="foot-skype" class="contact-link"><a href="<?php echo 'https://www.skype.com/ru/' . get_theme_mod( 'Skype', 'web-impression' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc4.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Skype', 'web-impression' ); ?></span></a></div>
+                            <div id="foot-vk" class="contact-link"><a href="<?php echo get_theme_mod( 'VKontakte', 'https://vk.com/web__impression' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc5.png?ver1.0" alt=""/></i><span><?php echo 'vk.com' . parse_url(get_theme_mod( 'VKontakte', 'https://vk.com/web__impression' ), PHP_URL_PATH); ?></span></a></div>
+                            <div id="foot-inst" class="contact-link"><a href="<?php echo 'https://www.instagram.com/' . get_theme_mod( 'Instagram', 'web__impression' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc6.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Instagram', 'web__impression' ); ?></span></a></div>
                         </div>
                         <a href="#pop-up2" class="btn btn-green fancy">ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ</a>
                     </div>

@@ -190,14 +190,13 @@ function sliceptc_customizer( $wp_customize ) {
             'priority' => 25,
         )
     );
-
+    // VKontakte
     $wp_customize->add_setting(
         'VKontakte',
         array(
             'default' => 'https://vk.com/web__impression',
         )
     );
-
     $wp_customize->add_control(
         'VKontakte',
         array(
@@ -209,7 +208,12 @@ function sliceptc_customizer( $wp_customize ) {
             ),
         )
     );
-
+    $wp_customize->selective_refresh->add_partial( 'VKontakte', array(
+        'selector' => '#soc-vk, #foot-vk',
+        'container_inclusive' => false,
+        'render_callback' => 'dummy_function'
+    ) );
+    // Instagram
     $wp_customize->add_setting(
         'Instagram',
         array(
@@ -227,7 +231,12 @@ function sliceptc_customizer( $wp_customize ) {
             ),
         )
     );
-
+    $wp_customize->selective_refresh->add_partial( 'Instagram', array(
+        'selector' => '#soc-inst, #foot-inst',
+        'container_inclusive' => false,
+        'render_callback' => 'dummy_function'
+    ) );
+    // Phone Number
     $wp_customize->add_setting(
         'Phone Number',
         array(
@@ -245,7 +254,12 @@ function sliceptc_customizer( $wp_customize ) {
             ),
         )
     );
-
+    $wp_customize->selective_refresh->add_partial( 'Phone Number', array(
+        'selector' => '#head-phone, #foot-phone',
+        'container_inclusive' => false,
+        'render_callback' => 'dummy_function'
+    ) );
+    // E-mail
     $wp_customize->add_setting(
         'Email',
         array(
@@ -263,7 +277,12 @@ function sliceptc_customizer( $wp_customize ) {
             ),
         )
     );
-
+    $wp_customize->selective_refresh->add_partial( 'Email', array(
+        'selector' => '#foot-email',
+        'container_inclusive' => false,
+        'render_callback' => 'dummy_function'
+    ) );
+    // Skype
     $wp_customize->add_setting(
         'Skype',
         array(
@@ -281,6 +300,11 @@ function sliceptc_customizer( $wp_customize ) {
             ),
         )
     );
+    $wp_customize->selective_refresh->add_partial( 'Skype', array(
+        'selector' => '#foot-skype',
+        'container_inclusive' => false,
+        'render_callback' => 'dummy_function'
+    ) );
 }
 add_action( 'customize_register', 'sliceptc_customizer' );
 
