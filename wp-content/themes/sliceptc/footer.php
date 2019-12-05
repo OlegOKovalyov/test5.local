@@ -23,29 +23,28 @@
                     <div class="contacts">
                         <h2>контакты</h2>
                         <div class="contact-item contact-phone">
-<!--                            <a href="tel:89167868105"><i><img src="--><?php //echo get_bloginfo('template_url'); ?><!--/assets/img/ico2.png?ver1.0" alt=""/></i><span>8-916-786-81-05</span></a>-->
-                            <a href="tel:<?php echo get_theme_mod( 'Phone Number', '8-916-786-81-05' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/ico2.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Phone Number', '8-916-786-81-05' ); ?></span></a>
+                            <a href="tel:<?php echo sliceptc_clear_phone_number(); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/ico2.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Phone Number', '8-916-786-81-05' ); ?></span></a>
                         </div>
                         <div class="contact-item contact-links">
-                            <div class="contact-link"><a href="mailto:info@web-impression.ru"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc3.png?ver1.0" alt=""/></i><span>info@web-impression.ru</span></a></div>
-                            <div class="contact-link"><a href="#"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc4.png?ver1.0" alt=""/></i><span>web-impression</span></a></div>
-                            <div class="contact-link"><a href="#"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc5.png?ver1.0" alt=""/></i><span>vk.com/web__impression</span></a></div>
-                            <div class="contact-link"><a href="#"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc6.png?ver1.0" alt=""/></i><span>web__impression</span></a></div>
+                            <div class="contact-link"><a href="mailto:<?php echo get_theme_mod( 'Email', 'info@web-impression.ru' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc3.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Email', 'info@web-impression.ru' ); ?></span></a></div>
+                            <div class="contact-link"><a href="<?php echo 'https://www.skype.com/ru/' . get_theme_mod( 'Skype', 'web-impression' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc4.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Skype', 'web-impression' ); ?></span></a></div>
+                            <div class="contact-link"><a href="<?php echo get_theme_mod( 'VKontakte', 'https://vk.com/web__impression' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc5.png?ver1.0" alt=""/></i><span><?php echo 'vk.com' . parse_url(get_theme_mod( 'VKontakte', 'https://vk.com/web__impression' ), PHP_URL_PATH); ?></span></a></div>
+                            <div class="contact-link"><a href="<?php echo 'https://www.instagram.com/' . get_theme_mod( 'Instagram', 'web__impression' ); ?>"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc6.png?ver1.0" alt=""/></i><span><?php echo get_theme_mod( 'Instagram', 'web__impression' ); ?></span></a></div>
                         </div>
                         <a href="#pop-up2" class="btn btn-green fancy">ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ</a>
                     </div>
                 </section>
                 <div class="foot-bot">
-                    <div class="foot-logo"><a href="#"><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/logo.png?ver1.0" alt=""/></a></div>
+                    <div class="foot-logo"><?php  the_custom_logo(); ?></div>
                     <div class="foot-nav">
-                        <ul>
-                            <li><a href="#">о компании</a></li>
-                            <li><a href="#">УСЛУГИ</a></li>
-                            <li><a href="#">ПРОЦЕСС РАБОТЫ</a></li>
-                            <li><a href="#">Портфолио</a></li>
-                            <li><a href="#">КОНТАКТЫ</a></li>
-
-                        </ul>
+                        <?php
+                        wp_nav_menu( array(
+                            'theme_location' => 'menu-footer',
+                            'menu_id'        => '',
+                            'menu_class'     => '',
+                            'container'      => '',
+                        ) );
+                        ?>
                     </div>
                 </div>
             </footer>
@@ -66,20 +65,14 @@
                     <h2>ЗАКАЗАТЬ ЗВОНОК</h2>
                     <p>Заполните форму ниже, и мы свяжемся с Вами в&nbsp;ближайшее время</p>
                     <div class="p-form">
-                        <div class="form-row"><input type="text" class="t-inp name-inp" placeholder="Введите Ваше имя*"/></div>
-                        <div class="form-row"><input type="text" class="t-inp mail-inp" placeholder="Введите Ваш e-mail*"/></div>
-                        <div class="form-row"><input type="text" class="t-inp tel-inp" placeholder="Введите Ваш номер телефона*"/></div>
-                        <input type="submit" class="btn" value="ОТПРАВИТЬ"/>
+                        <?php echo do_shortcode('[contact-form-7 id="174" title="Request Callback"]'); ?>
                     </div>
                 </div>
                 <div class="pop-up" id="pop-up2">
                     <h2>ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ</h2>
                     <p>Для отправки заявки на консультацию <br/>заполните форму ниже</p>
                     <div class="p-form">
-                        <div class="form-row"><input type="text" class="t-inp name-inp" placeholder="Введите Ваше имя*"/></div>
-                        <div class="form-row"><input type="text" class="t-inp mail-inp" placeholder="Введите Ваш e-mail*"/></div>
-                        <div class="form-row"><input type="text" class="t-inp tel-inp" placeholder="Введите Ваш номер телефона*"/></div>
-                        <input type="submit" class="btn" value="ОТПРАВИТЬ"/>
+                        <?php echo do_shortcode('[contact-form-7 id="174" title="Request Callback"]'); ?>
                     </div>
                 </div>
             </div>

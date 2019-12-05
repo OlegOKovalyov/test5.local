@@ -39,12 +39,12 @@
                         ) );
                         ?>
                         <div class="soc">
-                            <a href="<?php echo get_theme_mod( 'VKontakte URL', 'https://vk.com/' ); ?>"><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc1.png?ver1.0" alt=""/></a>
-                            <a href="<?php echo get_theme_mod( 'Instagram URL', 'https://www.instagram.com/' ); ?>"><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc2.png?ver1.0" alt=""/></a>
+                            <a href="<?php echo get_theme_mod( 'VKontakte', 'https://vk.com/' ); ?>"><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc1.png?ver1.0" alt=""/></a>
+                            <a href="<?php echo 'https://www.instagram.com/' . get_theme_mod( 'Instagram', 'web__impression' ); ?>"><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/soc2.png?ver1.0" alt=""/></a>
                         </div>
                     </nav>
                     <div class="head-phone">
-                        <a href="tel:<?php echo get_theme_mod( 'Phone Number', '8-916-786-81-05' ); ?>" class="phone-link"><?php echo get_theme_mod( 'Phone Number', '8-916-786-81-05' ); ?></a><br/>
+                        <a href="tel:<?php echo sliceptc_clear_phone_number(); ?>" class="phone-link"><?php echo get_theme_mod( 'Phone Number', '8-916-786-81-05' ); ?></a><br/>
                         <a href="#pop-up1" class="call-ord fancy"><i><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/ico1.png?ver1.0" alt=""/></i><span>ЗАКАЗАТЬ ЗВОНОК</span></a>
                     </div>
                 </div>

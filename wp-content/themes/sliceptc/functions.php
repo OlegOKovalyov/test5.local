@@ -45,6 +45,7 @@ if ( ! function_exists( 'sliceptc_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'sliceptc' ),
+            'menu-footer' => esc_html__( 'Footermenu', 'sliceptc' ),
 		) );
 
 		/*
@@ -124,7 +125,6 @@ function sliceptc_scripts() {
     wp_enqueue_style('sliceptc-styles', get_template_directory_uri() . '/assets/css/styles.css', array(), '1.0');
     wp_enqueue_style('sliceptc-desktop-css', get_template_directory_uri() . '/assets/css/desktop.css', array(), '1.0', 'screen and (min-width:1024px)');
 
-    wp_enqueue_script('jquery');
     wp_enqueue_script( 'sliceptc-scripts', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), '20151215', true );
     wp_enqueue_script( 'sliceptc-desktop-script', get_template_directory_uri() . '/assets/js/desktop.js', array('jquery'), '1.0', true );
 
@@ -178,59 +178,56 @@ function sliceptc_custom_logo_output( $html ) {
 }
 add_filter('get_custom_logo', 'sliceptc_custom_logo_output', 10);
 
-
 /**
  * Adds the individual sections, settings, and controls to the theme customizer
  */
 function sliceptc_customizer( $wp_customize ) {
     $wp_customize->add_section(
-        'sliceptc_section_one',
+        'sliceptc_section',
         array(
-            'title' => 'Header Social Icons',
-            'description' => 'Links to social networks.',
-            'priority' => 35,
-        )
-    );
-    $wp_customize->add_setting(
-        'VKontakte URL',
-        array(
-            'default' => 'https://vk.com/',
-        )
-    );
-    $wp_customize->add_control(
-        'VKontakte URL',
-        array(
-            'label' => 'VKontakte URL',
-            'section' => 'sliceptc_section_one',
-            'type' => 'url',
+            'title' =>  __( 'Header & Navigation' ),
+            'description' => esc_html__('Here you can change social links, phone numbers and e-mail.'),
+            'priority' => 25,
         )
     );
 
     $wp_customize->add_setting(
-        'Instagram URL',
+        'VKontakte',
         array(
-            'default' => 'https://www.instagram.com/',
+            'default' => 'https://vk.com/web__impression',
         )
     );
 
     $wp_customize->add_control(
-        'Instagram URL',
+        'VKontakte',
         array(
-            'label' => 'Instagram URL',
-            'section' => 'sliceptc_section_one',
+            'label' => __('VKontakte URL'),
+            'section' => 'sliceptc_section',
             'type' => 'url',
+            'input_attrs' => array(
+                'placeholder' => __( 'Enter VKontakte URL...' ),
+            ),
         )
     );
 
-
-    $wp_customize->add_section(
-        'sliceptc_section_two',
+    $wp_customize->add_setting(
+        'Instagram',
         array(
-            'title' => 'Contact Phone',
-            'description' => 'Company Contact Phone Number',
-            'priority' => 35,
+            'default' => 'web__impression',
         )
     );
+    $wp_customize->add_control(
+        'Instagram',
+        array(
+            'label' => __('Instagram URi'),
+            'section' => 'sliceptc_section',
+            'type' => 'text',
+            'input_attrs' => array(
+                'placeholder' => __( 'Enter Instagram URi, e.g.: web__impression...' ),
+            ),
+        )
+    );
+
     $wp_customize->add_setting(
         'Phone Number',
         array(
@@ -240,10 +237,127 @@ function sliceptc_customizer( $wp_customize ) {
     $wp_customize->add_control(
         'Phone Number',
         array(
-            'label' => 'Company Phone',
-            'section' => 'sliceptc_section_two',
+            'label' => __('Company Phone Show'),
+            'section' => 'sliceptc_section',
             'type' => 'text',
+            'input_attrs' => array(
+                'placeholder' => __( 'Enter Phone Number for Screen Show...' ),
+            ),
+        )
+    );
+
+    $wp_customize->add_setting(
+        'Email',
+        array(
+            'default' => 'info@web-impression.ru',
+        )
+    );
+    $wp_customize->add_control(
+        'Email',
+        array(
+            'label' => __('Company E-mail'),
+            'section' => 'sliceptc_section',
+            'type' => 'email',
+            'input_attrs' => array(
+                'placeholder' => __( 'Enter E-mail...' ),
+            ),
+        )
+    );
+
+    $wp_customize->add_setting(
+        'Skype',
+        array(
+            'default' => 'web-impression',
+        )
+    );
+    $wp_customize->add_control(
+        'Skype',
+        array(
+            'label' => __('Skype URi'),
+            'section' => 'sliceptc_section',
+            'type' => 'text',
+            'input_attrs' => array(
+                'placeholder' => __( 'Enter Skype URi, e.g.: web-impression...' ),
+            ),
         )
     );
 }
 add_action( 'customize_register', 'sliceptc_customizer' );
+
+/**
+ * Delete extra simbols from telephone number
+ */
+function sliceptc_clear_phone_number() {
+    $phone =  get_theme_mod( 'Phone Number', '89167868105' );
+    $phone = preg_replace('/[^0-9]/', '', $phone);
+    return $phone;
+}
+
+add_action('wp_enqueue_scripts', 'my_register_javascript', 100);
+
+/**
+ * Fix WordPress media library bug
+ */
+function my_register_javascript() {
+    wp_register_script('mediaelement', plugins_url('wp-mediaelement.min.js', __FILE__), array('jquery'), '4.8.2', true);
+    wp_enqueue_script('mediaelement');
+}
+
+/**
+ * Register Custom Post Type Portfolio
+ */
+function sliceptc_portfolio_cpt() {
+
+    $labels = array(
+        'name'                  => _x( 'Products', 'Post Type General Name', 'text_domain' ),
+        'singular_name'         => _x( 'Products', 'Post Type Singular Name', 'text_domain' ),
+        'menu_name'             => __( 'Products', 'text_domain' ),
+        'name_admin_bar'        => __( 'Product', 'text_domain' ),
+        'archives'              => __( 'Item Archives', 'text_domain' ),
+        'attributes'            => __( 'Item Attributes', 'text_domain' ),
+        'parent_item_colon'     => __( 'Parent Item:', 'text_domain' ),
+        'all_items'             => __( 'All Items', 'text_domain' ),
+        'add_new_item'          => __( 'Add New Item', 'text_domain' ),
+        'add_new'               => __( 'Add New', 'text_domain' ),
+        'new_item'              => __( 'New Item', 'text_domain' ),
+        'edit_item'             => __( 'Edit Item', 'text_domain' ),
+        'update_item'           => __( 'Update Item', 'text_domain' ),
+        'view_item'             => __( 'View Item', 'text_domain' ),
+        'view_items'            => __( 'View Items', 'text_domain' ),
+        'search_items'          => __( 'Search Item', 'text_domain' ),
+        'not_found'             => __( 'Not found', 'text_domain' ),
+        'not_found_in_trash'    => __( 'Not found in Trash', 'text_domain' ),
+        'featured_image'        => __( 'Featured Image', 'text_domain' ),
+        'set_featured_image'    => __( 'Set featured image', 'text_domain' ),
+        'remove_featured_image' => __( 'Remove featured image', 'text_domain' ),
+        'use_featured_image'    => __( 'Use as featured image', 'text_domain' ),
+        'insert_into_item'      => __( 'Insert into item', 'text_domain' ),
+        'uploaded_to_this_item' => __( 'Uploaded to this item', 'text_domain' ),
+        'items_list'            => __( 'Items list', 'text_domain' ),
+        'items_list_navigation' => __( 'Items list navigation', 'text_domain' ),
+        'filter_items_list'     => __( 'Filter items list', 'text_domain' ),
+    );
+    $args = array(
+        'label'                 => __( 'Products', 'text_domain' ),
+        'description'           => __( 'Portfolio products', 'text_domain' ),
+        'labels'                => $labels,
+        'supports'              => array( 'title', 'editor', 'thumbnail' ),
+        'taxonomies'            => array( 'category', 'post_tag' ),
+        'hierarchical'          => false,
+        'public'                => true,
+        'show_ui'               => true,
+        'show_in_menu'          => true,
+        'menu_position'         => 5,
+        'menu_icon'             => 'dashicons-layout',
+        'show_in_admin_bar'     => true,
+        'show_in_nav_menus'     => true,
+        'can_export'            => true,
+        'has_archive'           => true,
+        'exclude_from_search'   => true,
+        'publicly_queryable'    => true,
+        'capability_type'       => 'page',
+    );
+    register_post_type( 'portfolio', $args );
+
+}
+add_action( 'init', 'sliceptc_portfolio_cpt', 0 );
