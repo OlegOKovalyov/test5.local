@@ -127,6 +127,7 @@ function sliceptc_scripts() {
 
     wp_deregister_script('jquery');
     wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), null, true);
+    wp_enqueue_script('masonry');
     wp_enqueue_script( 'sliceptc-scripts', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), '20151215', true );
     wp_enqueue_script( 'sliceptc-desktop-js', get_template_directory_uri() . '/assets/js/desktop.js', array('sliceptc-scripts'), '1.0', true );
 
