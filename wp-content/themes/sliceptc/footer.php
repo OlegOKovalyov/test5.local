@@ -81,16 +81,16 @@
     </div><!-- .main-wrapper -->
 </div><!-- #page -->
 
+<?php wp_footer(); ?>
+
 <!-- scripts -->
 <script type="text/javascript">
-    // enquire.register("screen and (min-width: 1000px)", {
-    //     match : function() {
-    //         loadJS('assets/js/desktop.js?ver1.0');
-    //     }
-    // });
+    enquire.register("screen and (min-width: 1000px)", {
+        match : function() {
+            loadJS('/wp-content/themes/sliceptc/assets/js/desktop.js');
+        }
+    });
 </script>
-
-<?php wp_footer(); ?>
 
 </body>
 </html>
