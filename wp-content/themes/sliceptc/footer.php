@@ -83,14 +83,5 @@
 
 <?php wp_footer(); ?>
 
-<!-- scripts -->
-<script type="text/javascript">
-    enquire.register("screen and (min-width: 1000px)", {
-        match : function() {
-            loadJS('/wp-content/themes/sliceptc/assets/js/desktop.js');
-        }
-    });
-</script>
-
 </body>
 </html>
