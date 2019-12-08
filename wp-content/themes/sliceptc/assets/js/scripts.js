@@ -124,19 +124,4 @@ $(document).ready(function(){
 		$('.nav').removeClass('open');
 	});
 
-	//
-	/*$(window).scroll(function(){
-		$('.mobile-button').removeClass('open');
-		$('.nav').removeClass('open');
-	});*/
-	
-	$('.pols').masonry({
-	  // set itemSelector so .grid-sizer is not used in layout
-	  itemSelector: '.pol',
-	  // use element for option
-	  //columnWidth: '.grid-sizer',
-	  columnWidth: 20,
-	  //percentPosition: true
-	});
-
-});
+}); // ready()

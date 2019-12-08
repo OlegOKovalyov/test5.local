@@ -49,7 +49,7 @@ get_header();
                 </section>
                 <section class="section-preview">
                     <div class="preview">
-                        <div class="pols">
+                        <div class="pols" data-masonry='{ "itemSelector": ".pol", "columnWidth": 20 }'>
                             <div class="pol pol1"><img src="<?php the_field('img1'); ?>" alt=""/></div>
                             <div class="pol pol5"><img src="<?php the_field('img2'); ?>" alt=""/></div>
                             <div class="pol pol4"><img src="<?php the_field('img3'); ?>" alt=""/></div>
